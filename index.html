@@ -4,275 +4,26 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Culinarie-se - Blog de Culinária</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-    
     <style>
-        /* RESET E CONFIGURAÇÕES GERAIS DE UI */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fcfbfa;
-            color: #2d2926;
-            line-height: 1.6;
-        }
-
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        /* BARRA DE NAVEGAÇÃO FIXA (NAVBAR) */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            padding: 1rem 2rem;
-            z-index: 1000;
-        }
-
-        .navbar::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
-
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #e05a36;
-            float: left;
-        }
-
-        .nav-links {
-            float: right;
-            list-style: none;
-            margin-top: 0.3rem;
-        }
-
-        .nav-links li {
-            display: inline-block;
-            margin-left: 1.5rem;
-        }
-
-        .nav-links a {
-            font-weight: 500;
-            font-size: 0.95rem;
-            color: #5c534c;
-            transition: color 0.2s ease;
-        }
-
-        .nav-links a:hover {
-            color: #e05a36;
-        }
-
-        /* CONTAINER PRINCIPAL DO CONTEÚDO */
-        main {
-            max-width: 850px;
-            margin: 100px auto 3rem auto;
-            padding: 0 1.5rem;
-        }
-
-        /* CABEÇALHO DO BLOG */
-        .blog-header {
-            text-align: center;
-            margin-bottom: 4rem;
-            padding: 2rem 0;
-            border-bottom: 2px solid #f2efeb;
-        }
-
-        .blog-header h1 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 2.5rem;
-            color: #1c1a19;
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-header p {
-            color: #7c7269;
-            font-size: 1.1rem;
-        }
-
-        /* SEÇÕES EM FORMATO DE CARDS COMPACTOS */
-        .card-section {
-            background-color: #ffffff;
-            border-radius: 12px;
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.02);
-            border: 1px solid #edeae6;
-        }
-
-        .card-section h2 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.6rem;
-            color: #1c1a19;
-            margin-bottom: 0.5rem;
-            border-left: 5px solid #e05a36;
-            padding-left: 12px;
-        }
-
-        .section-subtitle {
-            font-size: 1rem;
-            color: #e05a36;
-            font-weight: 500;
-            margin-bottom: 1.5rem;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-
-        /* ESTILIZAÇÃO COMPACTA DAS IMAGENS (UX DESIGN) */
-        .blog-image {
-            width: 100%;
-            max-height: 380px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1.5rem;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-            display: block;
-        }
-
-        .card-section p {
-            color: #5c534c;
-            margin-bottom: 1.5rem;
-            font-size: 1.05rem;
-        }
-
-        /* LISTAS CUSTOMIZADAS (TÓPICOS 1 E 4) */
-        .styled-list {
-            list-style: none;
-        }
-
-        .styled-list li {
-            position: relative;
-            padding-left: 1.8rem;
-            margin-bottom: 1rem;
-            color: #403a35;
-        }
-
-        .styled-list li::before {
-            content: "•";
-            color: #e05a36;
-            font-size: 1.5rem;
-            position: absolute;
-            left: 0.5rem;
-            top: -0.2rem;
-        }
-
-        .styled-list strong {
-            color: #1c1a19;
-        }
-
-        /* TABELA DE SUBSTITUIÇÕES (TÓPICO 2) */
-        .table-wrapper {
-            overflow-x: auto;
-            margin-top: 1.5rem;
-        }
-
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-            font-size: 0.95rem;
-        }
-
-        th, td {
-            padding: 1rem;
-            border-bottom: 1px solid #edeae6;
-        }
-
-        th {
-            background-color: #fcfbfa;
-            color: #1c1a19;
-            font-weight: 600;
-            font-family: 'Montserrat', sans-serif;
-        }
-
-        tr:hover {
-            background-color: #fffdfb;
-        }
-
-        /* PASSOS DA RECEITA NUMERADOS (TÓPICO 3) */
-        .recipe-steps {
-            list-style: none;
-            counter-reset: step-counter;
-        }
-
-        .recipe-steps li {
-            counter-increment: step-counter;
-            position: relative;
-            padding-left: 3rem;
-            margin-bottom: 2rem;
-        }
-
-        .recipe-steps li::before {
-            content: counter(step-counter);
-            position: absolute;
-            left: 0;
-            top: 0;
-            background-color: #eff5f1;
-            color: #3a6b4c;
-            width: 2rem;
-            height: 2rem;
-            border-radius: 50%;
-            text-align: center;
-            line-height: 2rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .recipe-steps h3 {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.15rem;
-            color: #1c1a19;
-            margin-bottom: 0.4rem;
-        }
-
-        /* CAIXA DE DESTAQUE (DICA DE CHEF) */
-        .chef-tip {
-            background-color: #fff8f5;
-            border-left: 4px solid #e05a36;
-            padding: 1.2rem;
-            border-radius: 0 8px 8px 0;
-            margin-top: 1.5rem;
-        }
-
-        .chef-tip strong {
-            color: #e05a36;
-            display: block;
-            margin-bottom: 0.2rem;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 0.95rem;
-            text-transform: uppercase;
-        }
-
-        .chef-tip p {
-            margin-bottom: 0;
-            font-size: 0.95rem;
-            color: #5c534c;
-            font-style: italic;
-        }
-
-        /* RODAPÉ DO BLOG */
-        footer {
-            text-align: center;
-            padding: 2rem;
-            color: #a1978f;
-            font-size: 0.85rem;
-            border-top: 1px solid #edeae6;
-            background-color: #ffffff;
-            margin-top: 4rem;
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: #fcfbfa; color: #2d2926; line-height: 1.8; }
+        a { text-decoration: none; color: inherit; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 1rem 2rem; z-index: 1000; }
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 700; color: #e05a36; float: left; }
+        .nav-links { float: right; list-style: none; margin-top: 0.3rem; }
+        .nav-links li { display: inline-block; margin-left: 1.5rem; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; color: #5c534c; }
+        main { max-width: 850px; margin: 100px auto 3rem auto; padding: 0 1.5rem; }
+        .blog-header { text-align: center; margin-bottom: 4rem; padding: 2rem 0; border-bottom: 2px solid #f2efeb; }
+        .blog-header h1 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: #1c1a19; }
+        .card-section { background-color: #ffffff; border-radius: 12px; padding: 2.5rem; margin-bottom: 3rem; box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid #edeae6; }
+        .card-section h2 { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; color: #1c1a19; border-left: 5px solid #e05a36; padding-left: 12px; margin-bottom: 0.5rem; }
+        .section-subtitle { font-size: 1rem; color: #e05a36; font-weight: 500; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .blog-image { width: 100%; max-height: 380px; object-fit: cover; border-radius: 8px; margin-bottom: 1.5rem; display: block; }
+        .card-section p { color: #5c534c; margin-bottom: 1.2rem; font-size: 1.05rem; }
+        .chef-tip { background-color: #fff8f5; border-left: 4px solid #e05a36; padding: 1.2rem; border-radius: 0 8px 8px 0; margin-top: 1.5rem; }
+        footer { text-align: center; padding: 2rem; color: #a1978f; font-size: 0.85rem; border-top: 1px solid #edeae6; background-color: #ffffff; margin-top: 4rem; }
     </style>
 </head>
 <body>
@@ -288,7 +39,6 @@
     </nav>
 
     <main>
-        
         <header class="blog-header">
             <h1>Culinarie-se</h1>
             <p>Culinária descomplicada para estudantes e iniciantes</p>
@@ -298,93 +48,48 @@
             <h2>1. Guia do Sobrevivente: Utensílios Básicos</h2>
             <div class="section-subtitle">Você não precisa de uma cozinha profissional, só do essencial</div>
             
-            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=900&auto=format&fit=crop&q=80" alt="Faca de chefe cortando vegetais em uma tábua de madeira" class="blog-image">
+            <img src="LINK_DA_IMAGEM_01" alt="Guia de Utensílios Básicos" class="blog-image">
             
-            <p>Para começar a se virar na cozinha, esqueça aqueles aparelhos caros e cheios de funções que aparecem nos vídeos das redes sociais. Com apenas 4 itens básicos você já consegue preparar praticamente qualquer prato:</p>
+            <p>Para começar a se virar na cozinha, você pode esquecer aqueles aparelhos caros e cheios de funções que aparecem nos vídeos da internet. Na realidade, basta ter quatro itens essenciais para preparar praticamente qualquer refeição do dia a dia.</p>
             
-            <ul class="styled-list">
-                <li><strong>Uma faca boa (e afiada):</strong> A faca de chefe (tamanho médio) serve para cortar desde cebola até carne. Lembre-se: faca cega é a que mais causa acidentes, pois exige mais força e escorrega fácil.</li>
-                <li><strong>Uma frigideira antiaderente:</strong> Fundamental para o ovo mexido ou o bife do dia a dia não virarem uma crosta impossível de lavar depois.</li>
-                <li><strong>Uma espátula de silicone (Pão-duro):</strong> Não risca o revestimento da sua frigideira e raspa até a última gota de molho ou massa.</li>
-                <li><strong>Uma panela média com tampa:</strong> Perfeita para cozinhar o arroz, o macarrão de cada dia ou preparar uma sopa rápida.</li>
-            </ul>
+            <p>O primeiro passo é investir em uma boa faca de chefe afiada, pois ela corta de tudo com precisão e é bem mais segura do que usar uma faca cega que escorrega fácil. Além dela, ter uma frigideira antiaderente faz toda a diferença para impedir que ovos e bifes fiquem grudados no fundo. Para acompanhar a frigideira sem riscar o revestimento, uma espátula de silicone é a escolha perfeita. Por fim, uma panela média com tampa fecha o kit ideal, servindo perfeitamente para cozinhar o arroz, preparar macarrão ou fazer uma sopa rápida.</p>
         </section>
 
         <section id="substituicoes" class="card-section">
             <h2>2. Substituições Inteligentes</h2>
             <div class="section-subtitle">Faltou no meio da receita? Não entre em pânico</div>
             
-            <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=900&auto=format&fit=crop&q=80" alt="Ingredientes naturais saudáveis organizados em uma mesa" class="blog-image">
+            <img src="LINK_DA_IMAGEM_02" alt="Substituições Inteligentes" class="blog-image">
             
-            <p>Você leu a receita completa, começou a preparar os ingredientes e, no meio do caminho, percebeu que esqueceu de comprar algo essencial. Antes de desistir e gastar dinheiro com delivery, dê uma olhada na despensa e tente estas trocas:</p>
+            <p>É muito comum começar a preparar uma receita e perceber na metade do caminho que faltou algum ingrediente importante na dispensa. Nesses momentos, em vez de desistir e pedir comida pelo aplicativo, você pode recorrer a trocas simples e muito eficientes.</p>
             
-            <div class="table-wrapper">
-                <table>
-                    <thead>
-                        <tr>
-                            <th>Se a receita pede...</th>
-                            <th>Você pode substituir por...</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <td><strong>Creme de Leite</strong></td>
-                            <td>Iogurte natural integral (deixa o molho leve) ou leite integral batido com uma colher de manteiga derretida.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Ovo (em bolos ou tortas)</strong></td>
-                            <td>Meia banana amassada ou 1 colher de sopa de sementes de chia hidratadas em 3 colheres de sopa de água (funciona como liga).</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Vinagre</strong></td>
-                            <td>A mesma quantidade de suco de limão espremido na hora.</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Farinha de Trigo</strong></td>
-                            <td>Farinha de aveia ou de arroz. Substitui super bem em panquecas e bolos simples.</td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+            <p>Se a receita pedir creme de leite, por exemplo, o iogurte natural integral cumpre o papel trazendo uma textura leve e cremosa, assim como o leite misturado com um pouco de manteiga derretida. Ao fazer bolos e perceber que não tem ovos, usar meia banana amassada ou uma colher de sementes de chia hidratadas em água cria a liga perfeita para a massa. Da mesma forma, o suco de limão substitui o vinagre na mesma proporção, enquanto farinhas de aveia ou arroz cobrem perfeitamente a falta da farinha de trigo em receitas do cotidiano.</p>
         </section>
 
         <section id="receitas" class="card-section">
             <h2>3. Receitas de Uma Panela Só</h2>
             <div class="section-subtitle">Menos louça para lavar, mais sabor concentrado</div>
             
-            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&auto=format&fit=crop&q=80" alt="Prato delicioso e fresco feito em apenas uma panela" class="blog-image">
+            <img src="LINK_DA_IMAGEM_03" alt="Receita de Uma Panela Só" class="blog-image">
             
-            <p>Cozinhar o seu próprio almoço é ótimo, mas ter que lavar cinco panelas diferentes depois desanima qualquer um. O segredo da praticidade é otimizar os processos e preparar tudo em um único recipiente:</p>
+            <p>Cozinhar a própria refeição é ótimo, mas ter que lavar uma montanha de louça depois costuma desanimar qualquer um. O grande segredo da praticidade na cozinha é focar em refeições que possam ser preparadas do início ao fim dentro de um único recipiente.</p>
             
-            <ol class="recipe-steps">
-                <li>
-                    <h3>O Macarrão Infalível</h3>
-                    <p>Em vez de cozinhar a massa na água e fazer o molho separado, coloque o macarrão cru direto na panela com o molho de tomate, água fervendo, temperos e a sua proteína favorita (frango desfiado, carne moída ou cubos de legumes). Deixe cozinhar tudo junto com a panela tampada. O amido que sai do próprio macarrão vai deixar o seu molho incrivelmente encorpado e cremoso!</p>
-                </li>
-                <li>
-                    <h3>O Mexido de Respeito</h3>
-                    <p>Doure o alho e a cebola na panela, jogue aquele arroz amanhecido que está na geladeira e adicione o que tiver disponível (milho, queijo, cenoura ralada ou restos de carne). Para fechar, quebre dois ovos direto ali dentro, mexendo tudo rapidamente em fogo alto até cozinhar. Prato completo pronto em menos de 7 minutos.</p>
-                </li>
-            </ol>
+            <p>Uma excelente ideia é fazer o macarrão infalível de uma panela só, colocando a massa crua para cozinhar diretamente junto com o molho de tomate, água fervente e os seus temperos favoritos. O próprio amido liberado pelo macarrão deixa o molho incrivelmente cremoso. Outra opção rápida é o mexido completo, onde você aproveita o arroz amanhecido da geladeira, refoga com alho, cebola, legumes, e finaliza quebrando ovos diretamente na panela, misturando tudo em fogo alto para ter um prato delicioso em poucos minutos.</p>
         </section>
 
         <section id="temperos" class="card-section">
             <h2>4. Desbravando o Tempero</h2>
             <div class="section-subtitle">O segredo definitivo para a comida não ficar sem graça</div>
             
-            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&auto=format&fit=crop&q=80" alt="Colheres com vários temperos secos e coloridos" class="blog-image">
+            <img src="LINK_DA_IMAGEM_04" alt="Desbravando o Tempero" class="blog-image">
             
-            <p>O sal e o alho são a base da culinária, mas se você quiser subir de nível e dar identidade aos seus pratos, precisa perder o medo das ervas e especiarias. Comece com estas工夫 combinações que não têm erro:</p>
+            <p>Embora o sal e o alho sejam a base tradicional de quase todo prato, aprender a usar ervas e especiarias é o que realmente transforma uma comida simples em uma refeição inesquecível. Perder o medo dos temperos é mais fácil quando você conhece algumas combinações clássicas.</p>
             
-            <ul class="styled-list">
-                <li><strong>Para Aves (Frango):</strong> Combina perfeitamente com <strong>Açafrão (Cúrcuma)</strong> para dar uma cor dourada linda, <strong>Orégano</strong> e um toque final de suco de <strong>Limão</strong>.</li>
-                <li><strong>Para Carnes Vermelhas:</strong> Vá no clássico certeiro: <strong>Pimenta-do-reino</strong> moída na hora e folhas de <strong>Alecrim</strong> (fresco ou seco).</li>
-                <li><strong>Para Legumes:</strong> Ficam espetaculares se finalizados com uma pitada de <strong>Páprica Defumada</strong> (que traz um toque defumado especial) e um fio generoso de <strong>Azeite</strong> antes de assar ou refogar.</li>
-            </ul>
+            <p>Para frangos e aves em geral, o açafrão traz uma cor dourada vibrante que combina perfeitamente com orégano e umas gotas de limão. Já nas carnes vermelhas, a pimenta-do-reino moída na hora e algumas folhas de alecrim criam um sabor encorpado sem erro. Nos legumes refogados ou assados, a páprica defumada acompanhada de um fio generoso de azeite garante um aroma especial que faz toda a diferença.</p>
 
             <div class="chef-tip">
                 <strong>Dica de Chef:</strong>
-                <p>Sempre doure os temperos secos (como a páprica ou o açafrão) no óleo ou na manteiga por alguns segundos antes de jogar a água ou os alimentos. O calor direto libera os óleos essenciais dessas especiarias, dobrando o aroma e o sabor final do prato!</p>
+                <p>Uma dica valiosa é sempre dourar os temperos secos no óleo ou na manteiga por alguns segundos antes de adicionar os alimentos, pois o calor direto libera os óleos essenciais e intensifica todo o sabor da receita.</p>
             </div>
         </section>
 
