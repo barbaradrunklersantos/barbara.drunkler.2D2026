@@ -1,17 +1,16 @@
 <!DOCTYPE html>
 <html lang="pt-PT">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Culinarie-se - Blog de Culinária</title>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap"
-        rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
+    
     <style>
-        *,
-        *::before,
-        *::after {
+        /* RESET E CONFIGURAÇÕES GERAIS DE UI */
+        *, *::before, *::after {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
@@ -29,6 +28,7 @@
             color: inherit;
         }
 
+        /* BARRA DE NAVEGAÇÃO FIXA (NAVBAR) */
         .navbar {
             position: fixed;
             top: 0;
@@ -38,6 +38,12 @@
             box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
             padding: 1rem 2rem;
             z-index: 1000;
+        }
+
+        .navbar::after {
+            content: "";
+            display: table;
+            clear: both;
         }
 
         .logo {
@@ -63,14 +69,21 @@
             font-weight: 500;
             font-size: 0.95rem;
             color: #5c534c;
+            transition: color 0.2s ease;
         }
 
+        .nav-links a:hover {
+            color: #e05a36;
+        }
+
+        /* CONTAINER PRINCIPAL DO CONTEÚDO */
         main {
             max-width: 850px;
             margin: 100px auto 3rem auto;
             padding: 0 1.5rem;
         }
 
+        /* CABEÇALHO DO BLOG */
         .blog-header {
             text-align: center;
             margin-bottom: 4rem;
@@ -82,8 +95,15 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 2.5rem;
             color: #1c1a19;
+            margin-bottom: 0.5rem;
         }
 
+        .blog-header p {
+            color: #7c7269;
+            font-size: 1.1rem;
+        }
+
+        /* SEÇÕES EM FORMATO DE CARDS COMPACTOS */
         .card-section {
             background-color: #ffffff;
             border-radius: 12px;
@@ -97,9 +117,9 @@
             font-family: 'Montserrat', sans-serif;
             font-size: 1.6rem;
             color: #1c1a19;
+            margin-bottom: 0.5rem;
             border-left: 5px solid #e05a36;
             padding-left: 12px;
-            margin-bottom: 0.5rem;
         }
 
         .section-subtitle {
@@ -108,17 +128,27 @@
             font-weight: 500;
             margin-bottom: 1.5rem;
             text-transform: uppercase;
+            letter-spacing: 0.5px;
         }
 
+        /* ESTILIZAÇÃO COMPACTA DAS IMAGENS (UX DESIGN) */
         .blog-image {
             width: 100%;
             max-height: 380px;
             object-fit: cover;
             border-radius: 8px;
             margin-bottom: 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
             display: block;
         }
 
+        .card-section p {
+            color: #5c534c;
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+        }
+
+        /* LISTAS CUSTOMIZADAS (TÓPICOS 1 E 4) */
         .styled-list {
             list-style: none;
         }
@@ -127,6 +157,7 @@
             position: relative;
             padding-left: 1.8rem;
             margin-bottom: 1rem;
+            color: #403a35;
         }
 
         .styled-list li::before {
@@ -138,38 +169,54 @@
             top: -0.2rem;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
+        .styled-list strong {
+            color: #1c1a19;
+        }
+
+        /* TABELA DE SUBSTITUIÇÕES (TÓPICO 2) */
+        .table-wrapper {
+            overflow-x: auto;
             margin-top: 1.5rem;
         }
 
-        th,
-        td {
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+
+        th, td {
             padding: 1rem;
             border-bottom: 1px solid #edeae6;
-            text-align: left;
         }
 
         th {
             background-color: #fcfbfa;
+            color: #1c1a19;
+            font-weight: 600;
             font-family: 'Montserrat', sans-serif;
         }
 
+        tr:hover {
+            background-color: #fffdfb;
+        }
+
+        /* PASSOS DA RECEITA NUMERADOS (TÓPICO 3) */
         .recipe-steps {
             list-style: none;
-            counter-reset: step;
+            counter-reset: step-counter;
         }
 
         .recipe-steps li {
-            counter-increment: step;
+            counter-increment: step-counter;
             position: relative;
             padding-left: 3rem;
             margin-bottom: 2rem;
         }
 
         .recipe-steps li::before {
-            content: counter(step);
+            content: counter(step-counter);
             position: absolute;
             left: 0;
             top: 0;
@@ -181,8 +228,17 @@
             text-align: center;
             line-height: 2rem;
             font-weight: 600;
+            font-size: 0.9rem;
         }
 
+        .recipe-steps h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.15rem;
+            color: #1c1a19;
+            margin-bottom: 0.4rem;
+        }
+
+        /* CAIXA DE DESTAQUE (DICA DE CHEF) */
         .chef-tip {
             background-color: #fff8f5;
             border-left: 4px solid #e05a36;
@@ -191,6 +247,23 @@
             margin-top: 1.5rem;
         }
 
+        .chef-tip strong {
+            color: #e05a36;
+            display: block;
+            margin-bottom: 0.2rem;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 0.95rem;
+            text-transform: uppercase;
+        }
+
+        .chef-tip p {
+            margin-bottom: 0;
+            font-size: 0.95rem;
+            color: #5c534c;
+            font-style: italic;
+        }
+
+        /* RODAPÉ DO BLOG */
         footer {
             text-align: center;
             padding: 2rem;
@@ -202,7 +275,6 @@
         }
     </style>
 </head>
-
 <body>
 
     <nav class="navbar">
@@ -216,6 +288,7 @@
     </nav>
 
     <main>
+        
         <header class="blog-header">
             <h1>Culinarie-se</h1>
             <p>Culinária descomplicada para estudantes e iniciantes</p>
@@ -224,66 +297,73 @@
         <section id="utensilios" class="card-section">
             <h2>1. Guia do Sobrevivente: Utensílios Básicos</h2>
             <div class="section-subtitle">Você não precisa de uma cozinha profissional, só do essencial</div>
-            <img src="imagem01.jpg" alt="Guia de Utensílios Básicos" class="blog-image">
-            <p>Para começar a se virar na cozinha, esqueça aqueles aparelhos caros. Com apenas 4 itens básicos você já
-                consegue preparar praticamente qualquer prato:</p>
+            
+            <img src="https://images.unsplash.com/photo-1556910103-1c02745aae4d?w=900&auto=format&fit=crop&q=80" alt="Faca de chefe cortando vegetais em uma tábua de madeira" class="blog-image">
+            
+            <p>Para começar a se virar na cozinha, esqueça aqueles aparelhos caros e cheios de funções que aparecem nos vídeos das redes sociais. Com apenas 4 itens básicos você já consegue preparar praticamente qualquer prato:</p>
+            
             <ul class="styled-list">
-                <li><strong>Uma faca boa (e afiada):</strong> A faca de chefe serve para cortar tudo com segurança.</li>
-                <li><strong>Uma frigideira antiaderente:</strong> Fundamental para o ovo mexido ou bife não grudarem.
-                </li>
-                <li><strong>Uma espátula de silicone (Pão-duro):</strong> Não risca a frigideira e raspa até o fim.</li>
-                <li><strong>Uma panela média com tampa:</strong> Perfeita para cozinhar o arroz ou o macarrão.</li>
+                <li><strong>Uma faca boa (e afiada):</strong> A faca de chefe (tamanho médio) serve para cortar desde cebola até carne. Lembre-se: faca cega é a que mais causa acidentes, pois exige mais força e escorrega fácil.</li>
+                <li><strong>Uma frigideira antiaderente:</strong> Fundamental para o ovo mexido ou o bife do dia a dia não virarem uma crosta impossível de lavar depois.</li>
+                <li><strong>Uma espátula de silicone (Pão-duro):</strong> Não risca o revestimento da sua frigideira e raspa até a última gota de molho ou massa.</li>
+                <li><strong>Uma panela média com tampa:</strong> Perfeita para cozinhar o arroz, o macarrão de cada dia ou preparar uma sopa rápida.</li>
             </ul>
         </section>
 
         <section id="substituicoes" class="card-section">
             <h2>2. Substituições Inteligentes</h2>
             <div class="section-subtitle">Faltou no meio da receita? Não entre em pânico</div>
-            <img src="imagem02.jpg" alt="Substituições Inteligentes" class="blog-image">
-            <p>Antes de desistir e gastar dinheiro com delivery, dê uma olhada na despensa e tente estas trocas:</p>
-            <table>
-                <thead>
-                    <tr>
-                        <th>Se a receita pede...</th>
-                        <th>Você pode substituir por...</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <td><strong>Creme de Leite</strong></td>
-                        <td>Iogurte natural integral ou leite com manteiga.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Ovo (em bolos)</strong></td>
-                        <td>Meia banana amassada ou 1 colher de chia hidratada.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Vinagre</strong></td>
-                        <td>A mesma quantidade de suco de limão.</td>
-                    </tr>
-                    <tr>
-                        <td><strong>Farinha de Trigo</strong></td>
-                        <td>Farinha de aveia ou de arroz.</td>
-                    </tr>
-                </tbody>
-            </table>
+            
+            <img src="https://images.unsplash.com/photo-1498837167922-ddd27525d352?w=900&auto=format&fit=crop&q=80" alt="Ingredientes naturais saudáveis organizados em uma mesa" class="blog-image">
+            
+            <p>Você leu a receita completa, começou a preparar os ingredientes e, no meio do caminho, percebeu que esqueceu de comprar algo essencial. Antes de desistir e gastar dinheiro com delivery, dê uma olhada na despensa e tente estas trocas:</p>
+            
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Se a receita pede...</th>
+                            <th>Você pode substituir por...</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Creme de Leite</strong></td>
+                            <td>Iogurte natural integral (deixa o molho leve) ou leite integral batido com uma colher de manteiga derretida.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Ovo (em bolos ou tortas)</strong></td>
+                            <td>Meia banana amassada ou 1 colher de sopa de sementes de chia hidratadas em 3 colheres de sopa de água (funciona como liga).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Vinagre</strong></td>
+                            <td>A mesma quantidade de suco de limão espremido na hora.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Farinha de Trigo</strong></td>
+                            <td>Farinha de aveia ou de arroz. Substitui super bem em panquecas e bolos simples.</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </section>
 
         <section id="receitas" class="card-section">
             <h2>3. Receitas de Uma Panela Só</h2>
             <div class="section-subtitle">Menos louça para lavar, mais sabor concentrado</div>
-            <img src="imagem03.jpg" alt="Receita de Uma Panela Só" class="blog-image">
-            <p>O segredo da praticidade é otimizar os processos e preparar tudo em um único recipiente:</p>
+            
+            <img src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?w=900&auto=format&fit=crop&q=80" alt="Prato delicioso e fresco feito em apenas uma panela" class="blog-image">
+            
+            <p>Cozinhar o seu próprio almoço é ótimo, mas ter que lavar cinco panelas diferentes depois desanima qualquer um. O segredo da praticidade é otimizar os processos e preparar tudo em um único recipiente:</p>
+            
             <ol class="recipe-steps">
                 <li>
                     <h3>O Macarrão Infalível</h3>
-                    <p>Coloque o macarrão cru direto na panela com o molho de tomate, água fervendo e temperos. Deixe
-                        cozinhar tudo junto.</p>
+                    <p>Em vez de cozinhar a massa na água e fazer o molho separado, coloque o macarrão cru direto na panela com o molho de tomate, água fervendo, temperos e a sua proteína favorita (frango desfiado, carne moída ou cubos de legumes). Deixe cozinhar tudo junto com a panela tampada. O amido que sai do próprio macarrão vai deixar o seu molho incrivelmente encorpado e cremoso!</p>
                 </li>
                 <li>
                     <h3>O Mexido de Respeito</h3>
-                    <p>Doure o alho e a cebola, jogue o arroz amanhecido, legumes e quebre dois ovos direto ali dentro,
-                        mexendo em fogo alto.</p>
+                    <p>Doure o alho e a cebola na panela, jogue aquele arroz amanhecido que está na geladeira e adicione o que tiver disponível (milho, queijo, cenoura ralada ou restos de carne). Para fechar, quebre dois ovos direto ali dentro, mexendo tudo rapidamente em fogo alto até cozinhar. Prato completo pronto em menos de 7 minutos.</p>
                 </li>
             </ol>
         </section>
@@ -291,17 +371,20 @@
         <section id="temperos" class="card-section">
             <h2>4. Desbravando o Tempero</h2>
             <div class="section-subtitle">O segredo definitivo para a comida não ficar sem graça</div>
-            <img src="imagem04/.jpg" alt="Desbravando o Tempero" class="blog-image">
-            <p>Comece com estas combinações que não têm erro:</p>
+            
+            <img src="https://images.unsplash.com/photo-1596040033229-a9821ebd058d?w=900&auto=format&fit=crop&q=80" alt="Colheres com vários temperos secos e coloridos" class="blog-image">
+            
+            <p>O sal e o alho são a base da culinária, mas se você quiser subir de nível e dar identidade aos seus pratos, precisa perder o medo das ervas e especiarias. Comece com estas工夫 combinações que não têm erro:</p>
+            
             <ul class="styled-list">
-                <li><strong>Para Aves (Frango):</strong> Açafrão (Cúrcuma), Orégano e suco de Limão.</li>
-                <li><strong>Para Carnes Vermelhas:</strong> Pimenta-do-reino moída na hora e Alecrim.</li>
-                <li><strong>Para Legumes:</strong> Páprica Defumada e um fio generoso de Azeite.</li>
+                <li><strong>Para Aves (Frango):</strong> Combina perfeitamente com <strong>Açafrão (Cúrcuma)</strong> para dar uma cor dourada linda, <strong>Orégano</strong> e um toque final de suco de <strong>Limão</strong>.</li>
+                <li><strong>Para Carnes Vermelhas:</strong> Vá no clássico certeiro: <strong>Pimenta-do-reino</strong> moída na hora e folhas de <strong>Alecrim</strong> (fresco ou seco).</li>
+                <li><strong>Para Legumes:</strong> Ficam espetaculares se finalizados com uma pitada de <strong>Páprica Defumada</strong> (que traz um toque defumado especial) e um fio generoso de <strong>Azeite</strong> antes de assar ou refogar.</li>
             </ul>
+
             <div class="chef-tip">
                 <strong>Dica de Chef:</strong>
-                <p>Sempre doure os temperos secos no óleo por alguns segundos antes de jogar a água ou os alimentos para
-                    liberar mais aroma!</p>
+                <p>Sempre doure os temperos secos (como a páprica ou o açafrão) no óleo ou na manteiga por alguns segundos antes de jogar a água ou os alimentos. O calor direto libera os óleos essenciais dessas especiarias, dobrando o aroma e o sabor final do prato!</p>
             </div>
         </section>
 
@@ -312,5 +395,4 @@
     </footer>
 
 </body>
-
 </html>
