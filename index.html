@@ -4,56 +4,123 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Culinarie-se - Blog de Culinária</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Montserrat:wght@600;700&display=swap" rel="stylesheet">
-    
     <style>
-        /* RESET E CONFIGURAÇÕES GERAIS DE UI */
-        *, *::before, *::after {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        body { font-family: 'Inter', sans-serif; background-color: #fcfbfa; color: #2d2926; line-height: 1.6; }
+        a { text-decoration: none; color: inherit; }
+        .navbar { position: fixed; top: 0; left: 0; width: 100%; background-color: #ffffff; box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 1rem 2rem; z-index: 1000; }
+        .logo { font-family: 'Montserrat', sans-serif; font-size: 1.4rem; font-weight: 700; color: #e05a36; float: left; }
+        .nav-links { float: right; list-style: none; margin-top: 0.3rem; }
+        .nav-links li { display: inline-block; margin-left: 1.5rem; }
+        .nav-links a { font-weight: 500; font-size: 0.95rem; color: #5c534c; }
+        main { max-width: 850px; margin: 100px auto 3rem auto; padding: 0 1.5rem; }
+        .blog-header { text-align: center; margin-bottom: 4rem; padding: 2rem 0; border-bottom: 2px solid #f2efeb; }
+        .blog-header h1 { font-family: 'Montserrat', sans-serif; font-size: 2.5rem; color: #1c1a19; }
+        .card-section { background-color: #ffffff; border-radius: 12px; padding: 2.5rem; margin-bottom: 3rem; box-shadow: 0 4px 20px rgba(0,0,0,0.02); border: 1px solid #edeae6; }
+        .card-section h2 { font-family: 'Montserrat', sans-serif; font-size: 1.6rem; color: #1c1a19; border-left: 5px solid #e05a36; padding-left: 12px; margin-bottom: 0.5rem; }
+        .section-subtitle { font-size: 1rem; color: #e05a36; font-weight: 500; margin-bottom: 1.5rem; text-transform: uppercase; }
+        .blog-image { width: 100%; max-height: 380px; object-fit: cover; border-radius: 8px; margin-bottom: 1.5rem; display: block; }
+        .styled-list { list-style: none; }
+        .styled-list li { position: relative; padding-left: 1.8rem; margin-bottom: 1rem; }
+        .styled-list li::before { content: "•"; color: #e05a36; font-size: 1.5rem; position: absolute; left: 0.5rem; top: -0.2rem; }
+        table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+        th, td { padding: 1rem; border-bottom: 1px solid #edeae6; text-align: left; }
+        th { background-color: #fcfbfa; font-family: 'Montserrat', sans-serif; }
+        .recipe-steps { list-style: none; counter-reset: step; }
+        .recipe-steps li { counter-increment: step; position: relative; padding-left: 3rem; margin-bottom: 2rem; }
+        .recipe-steps li::before { content: counter(step); position: absolute; left: 0; top: 0; background-color: #eff5f1; color: #3a6b4c; width: 2rem; height: 2rem; border-radius: 50%; text-align: center; line-height: 2rem; font-weight: 600; }
+        .chef-tip { background-color: #fff8f5; border-left: 4px solid #e05a36; padding: 1.2rem; border-radius: 0 8px 8px 0; margin-top: 1.5rem; }
+        footer { text-align: center; padding: 2rem; color: #a1978f; font-size: 0.85rem; border-top: 1px solid #edeae6; background-color: #ffffff; margin-top: 4rem; }
+    </style>
+</head>
+<body>
 
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #fcfbfa;
-            color: #2d2926;
-            line-height: 1.6;
-        }
+    <nav class="navbar">
+        <div class="logo">Culinarie-se</div>
+        <ul class="nav-links">
+            <li><a href="#utensilios">Utensílios</a></li>
+            <li><a href="#substituicoes">Substituições</a></li>
+            <li><a href="#receitas">Receitas Práticas</a></li>
+            <li><a href="#temperos">Temperos</a></li>
+        </ul>
+    </nav>
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
+    <main>
+        <header class="blog-header">
+            <h1>Culinarie-se</h1>
+            <p>Culinária descomplicada para estudantes e iniciantes</p>
+        </header>
 
-        /* BARRA DE NAVEGAÇÃO FIXA (NAVBAR) */
-        .navbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            background-color: #ffffff;
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            padding: 1rem 2rem;
-            z-index: 1000;
-        }
+        <section id="utensilios" class="card-section">
+            <h2>1. Guia do Sobrevivente: Utensílios Básicos</h2>
+            <div class="section-subtitle">Você não precisa de uma cozinha profissional, só do essencial</div>
+            <img src="imagens/imagem01.jpg" alt="Guia de Utensílios Básicos" class="blog-image">
+            <p>Para começar a se virar na cozinha, esqueça aqueles aparelhos caros. Com apenas 4 itens básicos você já consegue preparar praticamente qualquer prato:</p>
+            <ul class="styled-list">
+                <li><strong>Uma faca boa (e afiada):</strong> A faca de chefe serve para cortar tudo com segurança.</li>
+                <li><strong>Uma frigideira antiaderente:</strong> Fundamental para o ovo mexido ou bife não grudarem.</li>
+                <li><strong>Uma espátula de silicone (Pão-duro):</strong> Não risca a frigideira e raspa até o fim.</li>
+                <li><strong>Uma panela média com tampa:</strong> Perfeita para cozinhar o arroz ou o macarrão.</li>
+            </ul>
+        </section>
 
-        .navbar::after {
-            content: "";
-            display: table;
-            clear: both;
-        }
+        <section id="substituicoes" class="card-section">
+            <h2>2. Substituições Inteligentes</h2>
+            <div class="section-subtitle">Faltou no meio da receita? Não entre em pânico</div>
+            <img src="imagens/imagem02.jpg" alt="Substituições Inteligentes" class="blog-image">
+            <p>Antes de desistir e gastar dinheiro com delivery, dê uma olhada na despensa e tente estas trocas:</p>
+            <table>
+                <thead>
+                    <tr><th>Se a receita pede...</th><th>Você pode substituir por...</th></tr>
+                </thead>
+                <tbody>
+                    <tr><td><strong>Creme de Leite</strong></td><td>Iogurte natural integral ou leite com manteiga.</td></tr>
+                    <tr><td><strong>Ovo (em bolos)</strong></td><td>Meia banana amassada ou 1 colher de chia hidratada.</td></tr>
+                    <tr><td><strong>Vinagre</strong></td><td>A mesma quantidade de suco de limão.</td></tr>
+                    <tr><td><strong>Farinha de Trigo</strong></td><td>Farinha de aveia ou de arroz.</td></tr>
+                </tbody>
+            </table>
+        </section>
 
-        .logo {
-            font-family: 'Montserrat', sans-serif;
-            font-size: 1.4rem;
-            font-weight: 700;
-            color: #e05a36;
-            float: left;
-        }
+        <section id="receitas" class="card-section">
+            <h2>3. Receitas de Uma Panela Só</h2>
+            <div class="section-subtitle">Menos louça para lavar, mais sabor concentrado</div>
+            <img src="imagens/imagem03.jpg" alt="Receita de Uma Panela Só" class="blog-image">
+            <p>O segredo da praticidade é otimizar os processos e preparar tudo em um único recipiente:</p>
+            <ol class="recipe-steps">
+                <li>
+                    <h3>O Macarrão Infalível</h3>
+                    <p>Coloque o macarrão cru direto na panela com o molho de tomate, água fervendo e temperos. Deixe cozinhar tudo junto.</p>
+                </li>
+                <li>
+                    <h3>O Mexido de Respeito</h3>
+                    <p>Doure o alho e a cebola, jogue o arroz amanhecido, legumes e quebre dois ovos direto ali dentro, mexendo em fogo alto.</p>
+                </li>
+            </ol>
+        </section>
 
-        .nav-links {
-            float: right;
-            list-style: none;
+        <section id="temperos" class="card-section">
+            <h2>4. Desbravando o Tempero</h2>
+            <div class="section-subtitle">O segredo definitivo para a comida não ficar sem graça</div>
+            <img src="imagens/imagem04.jpg" alt="Desbravando o Tempero" class="blog-image">
+            <p>Comece com estas combinações que não têm erro:</p>
+            <ul class="styled-list">
+                <li><strong>Para Aves (Frango):</strong> Açafrão (Cúrcuma), Orégano e suco de Limão.</li>
+                <li><strong>Para Carnes Vermelhas:</strong> Pimenta-do-reino moída na hora e Alecrim.</li>
+                <li><strong>Para Legumes:</strong> Páprica Defumada e um fio generoso de Azeite.</li>
+            </ul>
+            <div class="chef-tip">
+                <strong>Dica de Chef:</strong>
+                <p>Sempre doure os temperos secos no óleo por alguns segundos antes de jogar a água ou os alimentos para liberar mais aroma!</p>
+            </div>
+        </section>
+
+    </main>
+
+    <footer>
+        <p>&copy; 2026 Culinarie-se - Desenvolvido no VS Code para o projeto escolar de Web Design & UX.</p>
+    </footer>
+
+</body>
+</html>
